@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>hexo 搭建并配置material主题</title>
+      <link href="/2018/05/11/hexo/"/>
+      <url>/2018/05/11/hexo/</url>
+      <content type="html"><![CDATA[<p>阅读这篇文章，你将获得的知识技能有，hexo的搭建、material 主题的安装</p><h4 id="在写最前面"><a href="#在写最前面" class="headerlink" title="在写最前面"></a>在写最前面</h4><p>本文默认你已经在所使用的环境中安装了 git 、 node，如果没有请查看相关官方文档进行安装。<br><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git官方安装教程</a><br><a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">node官方安装教程</a></p><h4 id="hexo的安装"><a href="#hexo的安装" class="headerlink" title="hexo的安装"></a>hexo的安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure><p>遇到问题或了解详细信息: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">点击这里</a></p><h4 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h4><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure></p><p>此段借鉴hexo官方文档,更多信息请参考官方文档: <a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">文档地址</a></p><h4 id="自定义配置文件"><a href="#自定义配置文件" class="headerlink" title="自定义配置文件"></a>自定义配置文件</h4><p>项目根目录下 <code>_config.yml</code> 即为整个站点的配置文件<br>具体配置参数详解: <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">点击这里</a></p><h4 id="安装material主题"><a href="#安装material主题" class="headerlink" title="安装material主题"></a>安装material主题</h4><ul><li>material主题下载: <a href="https://github.com/viosey/hexo-theme-material#download-%E4%B8%8B%E8%BD%BD" target="_blank" rel="noopener">下载地址</a></li><li>material主题安装与启用: <a href="https://material.viosey.com/docs/#/start?id=%E5%AE%89%E8%A3%85%E3%80%8Cmaterial%E3%80%8D" target="_blank" rel="noopener">点击这里</a></li><li>material主题配置: <a href="https://material.viosey.com/docs/#/config_basic" target="_blank" rel="noopener">点击这里</a></li></ul><h4 id="本地测试运行"><a href="#本地测试运行" class="headerlink" title="本地测试运行"></a>本地测试运行</h4><p>在你完成上面的教程并按照自己的喜好自定义配置之后，我们需要本地运行，看下效果。在项目根目录运行以下命令，并用浏览器打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到运行效果。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></p><h4 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h4><p>关于这一块网上有很多文章，我这边也就不赘述了，直接贴上教程地址: <a href="https://blog.csdn.net/Hoshea_chx/article/details/78826689" target="_blank" rel="noopener">用Hexo + github搭建自己的博客 — 再也不用羡慕别人了！</a></p><h4 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h4><p>当你已经部署到github以后，就可以通过   &lt;username>.github.io 访问你自己的博客了,如遇到任何问题可在下方评论，很乐意帮你解决问题。</p>]]></content>
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> material </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      <content type="html"><![CDATA[]]></content>
+    </entry>
+    
+    <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      <content type="html"><![CDATA[]]></content>
+    </entry>
+    
+  
+</search>
