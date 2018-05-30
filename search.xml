@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>spring-boot swagger 配置</title>
+      <link href="/2018/05/30/swagger/"/>
+      <url>/2018/05/30/swagger/</url>
+      <content type="html"><![CDATA[<p>阅读这篇文章，你将获得的知识技能有，spring-boot配置swagger, 以及swagger一些自定义配置，比如说header头，host等</p><h4 id="在写最前面"><a href="#在写最前面" class="headerlink" title="在写最前面"></a>在写最前面</h4><p>在前后端分离的情景下，后端开发给出api的相应文档就显得尤为重要了，当spring-boot 搭上swagger那就事半功倍了。本文的开发环境是：idea + maven3 + jdk8 + spring-boot 1.5.6</p><h4 id="swagger集成"><a href="#swagger集成" class="headerlink" title="swagger集成"></a>swagger集成</h4><p>在pom.xml中添加如下依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--swagger2--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.springfox&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.2.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.springfox&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.2.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p><p>建立配置文件内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableSwagger2</span><br><span class="line">public class Swagger &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Docket createRestApi() &#123;</span><br><span class="line">        ParameterBuilder tokenPar = new ParameterBuilder();</span><br><span class="line">        List&lt;Parameter&gt; pars = new ArrayList&lt;&gt;();</span><br><span class="line">        tokenPar.name(&quot;自定义http header&quot;).description(&quot;自定义header描述&quot;).modelRef(new ModelRef(&quot;string&quot;)).parameterType(&quot;header&quot;).required(true).build();</span><br><span class="line">        pars.add(tokenPar.build());</span><br><span class="line"></span><br><span class="line">        return new Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .globalOperationParameters(pars)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .protocols(new HashSet() &#123;&#123;</span><br><span class="line">                    add(&quot;https&quot;);</span><br><span class="line">                &#125;&#125;)</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(&quot;你Controller包名&quot;))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private ApiInfo apiInfo() &#123;</span><br><span class="line">        return new ApiInfoBuilder()</span><br><span class="line">                .title(&quot;demo RESTful APIs&quot;)</span><br><span class="line">                .description(&quot;API描述&quot;)</span><br><span class="line">                .termsOfServiceUrl(&quot;http://demo.demo.me&quot;)</span><br><span class="line">                .contact(&quot;demo&quot;)</span><br><span class="line">                .version(&quot;1.0&quot;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>@EnableSwagger2 启动swagger2<br>new Docket().globalOperationParameters(pars) 可添加自定义http header<br>new Docket().host(“”) 可自定义swagger host</p><h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>如果你的版本里没有Docket().host(“”) 这个函数，那么请在 application.properties 中添加如下配置：springfox.documentation.swagger.v2.host=demo.demo.me/api 效果相同</p><h4 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h4><p>启动spring项目访问 localhost:8080/swagger-ui.html 即可看到swagger生成的api文档。如果在swagger-ui.html 前面加个根路径比如localhost:8080/api/swagger-ui.html，可修改server.context-path=/api。有关前后端分离，nginx转发代理如何访问文档问题也可在此问我。</p>]]></content>
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spring-boot </tag>
+            
+            <tag> swagger </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>hexo 搭建并配置material主题</title>
       <link href="/2018/05/11/hexo/"/>
       <url>/2018/05/11/hexo/</url>
@@ -10,7 +33,7 @@
       
       <categories>
           
-          <category> hexo </category>
+          <category> 教程 </category>
           
       </categories>
       
